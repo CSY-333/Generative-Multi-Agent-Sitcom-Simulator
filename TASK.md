@@ -1,7 +1,7 @@
 # Tasks
 
 - [x] Create PRD based on ideation.md <!-- id: 0 -->
-- [ ] Initialize Project Structure & Environment <!-- id: 1 -->
+- [x] Initialize Project Structure & Environment <!-- id: 1 -->
     - [ ] Create directories: `storage/chroma`, `exports/sessions`, `tests`
     - [ ] Create core files: `models.py`, `memory_stream.py`, `agent.py`, `prompts.py`, `scoring.py`, `utils.py`, `config.py`, `app.py`
     - [ ] Setup virtual environment and install dependencies (`chromadb`, `openai`, `streamlit`, `pydantic`)
