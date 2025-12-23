@@ -3,7 +3,7 @@ name: Deploy Marp Presentation to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - "docs/PRD_presentation.md"
   workflow_dispatch:
