@@ -2,3 +2,6 @@ chromadb
 openai
 streamlit
 pydantic
+pytest
+numpy
+pandas

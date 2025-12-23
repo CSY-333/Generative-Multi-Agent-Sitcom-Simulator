@@ -1,45 +1,52 @@
 # Tasks
 
 - [x] Create PRD based on ideation.md <!-- id: 0 -->
+- [x] Create Marp Presentation based on PRD <!-- id: 9 -->
 - [x] Initialize Project Structure & Environment <!-- id: 1 -->
-    - [ ] Create directories: `storage/chroma`, `exports/sessions`, `tests`
-    - [ ] Create core files: `models.py`, `memory_stream.py`, `agent.py`, `prompts.py`, `scoring.py`, `utils.py`, `config.py`, `app.py`
-    - [ ] Setup virtual environment and install dependencies (`chromadb`, `openai`, `streamlit`, `pydantic`)
-- [ ] Implement Data Models (`models.py`) <!-- id: 2 -->
-    - [ ] Define `Memory` class (id, content, type, created_at, importance, source, tags, embedding)
-    - [ ] Define `AgentProfile` (name, traits, goal) and `AgentState` (turn_index, connection, last_plan, last_utterance)
-    - [ ] Define `TurnRecord` for UI debugging (context, retrieved, reflection, plan, utterance, store_events)
-    - [ ] Define `ScoredMemory` (memory + sub-scores) and `StoreEvent`
-- [ ] Implement Scoring Logic (`scoring.py`) <!-- id: 3 -->
-    - [ ] Implement `importance_rule_score` (keywords: event(+2), emotion(+1), goal(+2), names(+1); range 1-10)
-    - [ ] Implement `recency_score` using exponential decay
-    - [ ] Implement `final_score` calculation (weighted sum of similarity, recency, importance)
-- [ ] Implement Memory System (`memory_stream.py`) <!-- id: 4 -->
-    - [ ] Initialize ChromaDB with persistent storage path
-    - [ ] Implement `add_memory` with metadata
-    - [ ] Implement `retrieve` pipeline: Vector Search (Top-N) -> Re-ranking (Scoring) -> Return Top-K
-- [ ] Implement Agent Instructions & Prompts (`prompts.py`) <!-- id: 5 -->
-    - [ ] Define System Prompt (Persona, Goal, Safety)
-    - [ ] Define Planner Prompt (Next action one-liner)
-    - [ ] Define Reflection Prompt (Summarize recent events/emotions)
-    - [ ] Define Importance Scoring Prompt (Optional LLM-based)
-- [ ] Implement Agent Core Logic (`agent.py`) <!-- id: 6 -->
-    - [ ] Initialize Agent with Profile, State, MemoryStream
-    - [ ] Implement `run_step` workflow:
-        - [ ] **Query Assembly**: Combine context + other_agent + goal
-        - [ ] **Retrieval**: Fetch scored memories
-        - [ ] **Reflection (Conditional)**: Generate and store reflection every N turns
-        - [ ] **Planning**: Generate one-sentence plan
-        - [ ] **Action**: Generate utterance using context, memories, plan
-        - [ ] **Storage**: Conditionally store observation (importance threshold)
-- [ ] Implement Streamlit UI (`app.py`) <!-- id: 7 -->
-    - [ ] **Sidebar**: Inputs for Agent Profiles, Model Config, Memory Weights
-    - [ ] **Session State**: Manage `agents`, `transcript`, `turn_idx`, `config`
-    - [ ] **Main Area**: Display chat transcript (Left/Right bubbles)
-    - [ ] **Debug Expander**: Show `Retrieved Memories` (with scores), `Reflection`, `Plan`, `Store Decisions` per turn
-    - [ ] **Controls**: `Reset`, `Run 1 Turn`, `Export` buttons
-- [ ] Verification & Testing <!-- id: 8 -->
-    - [ ] Unit Test `scoring.py`: Verify range 0-1 and keyword rules
-    - [ ] Unit Test `memory_stream.py`: Verify storage and retrieval (mock embedding)
-    - [ ] Integration Test: Run 3-5 turns, verify transcript growth and reflection generation
-    - [ ] Manual Check: Verify "Why did it say that?" via Debug Expander
+    - [x] Create directories: `storage/chroma`, `exports/sessions`, `tests`
+    - [x] Create core files: `models.py`, `memory_stream.py`, `agent.py`, `selector.py`, `prompts.py`, `scoring.py`, `utils.py`, `config.py`, `app.py`
+    - [x] Setup virtual environment and install dependencies (`chromadb`, `openai`, `streamlit`, `pydantic`)
+- [x] Implement Data Models (`models.py`) <!-- id: 2 -->
+    - [x] Define `Memory` class (id, content, type, created_at, importance, source, tags, embedding)
+    - [x] Define `AgentProfile` (name, traits, goal) and `AgentState` (turn_index, connection, last_plan, last_utterance)
+    - [x] Define `TurnRecord` for UI debugging (context, retrieved, reflection, plan, utterance, store_events)
+    - [x] Define `ScoredMemory` (memory + sub-scores) and `StoreEvent`
+- [x] Implement Scoring Logic (`scoring.py`) <!-- id: 3 -->
+    - [x] Implement `importance_rule_score` (keywords: event(+2), emotion(+1), goal(+2), names(+1); range 1-10)
+    - [x] Implement `recency_score` using exponential decay
+    - [x] Implement `final_score` calculation (weighted sum of similarity, recency, importance)
+- [x] Implement Memory System (`memory_stream.py`) <!-- id: 4 -->
+    - [x] Initialize ChromaDB with persistent storage path
+    - [x] Implement `add_memory` with metadata
+    - [x] Implement `retrieve` pipeline: Vector Search (Top-N) -> Re-ranking (Scoring) -> Return Top-K
+- [x] Implement Agent Instructions & Prompts (`prompts.py`) <!-- id: 5 -->
+    - [x] Define System Prompt (Persona, Goal, Safety)
+    - [x] Define Planner Prompt (Next action one-liner)
+    - [x] Define Reflection Prompt (Summarize recent events/emotions)
+    - [x] Define Importance Scoring Prompt (Optional LLM-based)
+- [x] Implement Agent Core Logic (`agent.py`) <!-- id: 6 -->
+    - [x] Initialize Agent with Profile, State, MemoryStream
+    - [x] Implement `run_step` workflow:
+        - [x] **Query Assembly**: Combine context + other_agent + goal
+        - [x] **Retrieval**: Fetch scored memories
+        - [x] **Reflection (Conditional)**: Generate and store reflection every N turns
+        - [x] **Planning**: Generate one-sentence plan
+        - [x] **Action**: Generate utterance using context, memories, plan
+        - [x] **Storage**: Conditionally store observation (importance threshold)
+- [x] Implement Speaker Selector (`selector.py`) <!-- id: 10 -->
+    - [x] Logic to select next speaker among N agents (Round Robin or LLM)
+- [x] Implement Streamlit UI (`app.py`) <!-- id: 7 -->
+    - [x] **Sidebar**: Dynamic inputs for N Agent Profiles
+    - [x] **Session State**: Manage `agents`, `transcript`, `turn_idx`, `config`
+    - [x] **Main Area**: Display chat transcript (Left/Right bubbles)
+    - [x] **Debug Expander**: Show `Retrieved Memories` (with scores), `Reflection`, `Plan`, `Store Decisions` per turn
+    - [x] **Controls**: `Reset`, `Run 1 Turn`, `Export` buttons
+    - [x] Enhance UI Experience <!-- id: 11 -->
+    - [x] **Game-like Styling**: Custom CSS for Dark Mode, RPG-style dialogue boxes, and neon accents
+    - [x] **Time Slider**: Implement timeline slider to replay/inspect past turns (4th Dimension)
+    - [x] **Visual Polish**: Use columns and containers to create a "Scene" vs "Log" layout
+- [x] Verification & Testing <!-- id: 8 -->
+    - [x] Unit Test `scoring.py`: Verify range 0-1 and keyword rules
+    - [x] Unit Test `memory_stream.py`: Verify storage and retrieval (mock embedding)
+    - [x] Integration Test: Run 3-5 turns, verify transcript growth and reflection generation
+    - [x] Manual Check: Verify "Why did it say that?" via Debug Expander
